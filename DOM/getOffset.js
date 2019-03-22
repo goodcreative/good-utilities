@@ -5,9 +5,9 @@
  *
  * @returns {object} Simple object with left and top properties
  */
-export function getOffset(el) {
+export default function getOffset(el) {
   const element = el.getBoundingClientRect();
-  
+
   return {
     left: element.left + window.scrollX,
     top: element.top + window.scrollY
