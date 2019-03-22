@@ -1,0 +1,19 @@
+{
+  "name": "@wearegood/good-utilities",
+  "version": "0.0.1",
+  "description": "A collection of JavaScript utility functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodcreative/good-utilities.git"
+  },
+  "author": "Jamie Boyd <jamie@wearegood.com> (https://www.wearegood.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goodcreative/good-utilities/issues"
+  },
+  "homepage": "https://github.com/goodcreative/good-utilities#readme"
+}
