@@ -1,6 +1,6 @@
 {
   "name": "@wearegood/good-utilities",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "A collection of JavaScript utility functions",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,6 @@
   "dependencies": {
     "debounce": "^1.2.0",
     "delegate": "^3.2.0",
-    "pubsub-js": "^1.7.0" 
+    "pubsub-js": "^1.7.0"
   }
 }
