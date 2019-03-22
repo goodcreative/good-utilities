@@ -17,3 +17,6 @@ Thumbs.db
 *.bbprojectd
 /.dropbox
 /Icon
+
+# Node Modules
+node_modules

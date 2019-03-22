@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/goodcreative/good-utilities/issues"
   },
-  "homepage": "https://github.com/goodcreative/good-utilities#readme"
+  "homepage": "https://github.com/goodcreative/good-utilities#readme",
+  "dependencies": {
+    "debounce": "^1.2.0",
+    "delegate": "^3.2.0",
+    "pubsub-js": "^1.7.0" 
+  }
 }

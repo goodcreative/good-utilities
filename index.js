@@ -18,10 +18,17 @@ import ready from "./DOM/ready";
 import removeInlineStyles from "./DOM/removeInlineStyles";
 import wrapElement from "./DOM/wrapElement";
 
+import bindGlobalMessages from "./Events/bindGlobalMessages";
+import createCustomEvent from "./Events/createCustomEvent";
+import createDelegatedEventListener from "./Events/createDelegatedEventListener";
+import createGlobalMessenger from "./Events/createGlobalMessenger";
+import messages from "./Events/messages";
+
 /////////////
 // Exports //
 /////////////
 
+// DOM
 export { collapseElement };
 export { createNodeFromHTML };
 export { expandElement };
@@ -35,3 +42,10 @@ export { isElementInView };
 export { ready };
 export { removeInlineStyles };
 export { wrapElement };
+
+// Events
+export { bindGlobalMessages };
+export { createCustomEvent };
+export { createDelegatedEventListener };
+export { createGlobalMessenger };
+export { messages };
