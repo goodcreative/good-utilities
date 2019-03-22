@@ -4,7 +4,7 @@ import getIndexOfNode from "./DOM/getIndexOfNode";
 import ready from "./DOM/ready";
 
 
-module.exports = {
+export default {
   getIndexOfNode: getIndexOfNode,
   ready: ready
-};
+}
