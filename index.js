@@ -4,6 +4,7 @@
 // Imports //
 /////////////
 
+// DOM
 import collapseElement from "./DOM/collapseElement";
 import createNodeFromHTML from "./DOM/createNodeFromHTML";
 import expandElement from "./DOM/expandElement";
@@ -18,11 +19,15 @@ import ready from "./DOM/ready";
 import removeInlineStyles from "./DOM/removeInlineStyles";
 import wrapElement from "./DOM/wrapElement";
 
+// Events
 import bindGlobalMessages from "./Events/bindGlobalMessages";
 import createCustomEvent from "./Events/createCustomEvent";
 import createDelegatedEventListener from "./Events/createDelegatedEventListener";
 import createGlobalMessenger from "./Events/createGlobalMessenger";
 import messages from "./Events/messages";
+
+// Analytics
+import trackPageEvent from "./Analytics/trackPageEvent";
 
 /////////////
 // Exports //
@@ -49,3 +54,6 @@ export { createCustomEvent };
 export { createDelegatedEventListener };
 export { createGlobalMessenger };
 export { messages };
+
+// Analytics
+export { trackPageEvent };
