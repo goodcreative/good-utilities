@@ -6,6 +6,7 @@
 
 // DOM
 import collapseElement from "./DOM/collapseElement";
+import decodeCharacters from "./DOM/decodeCharacters/decodeCharacters";
 import createNodeFromHTML from "./DOM/createNodeFromHTML";
 import expandElement from "./DOM/expandElement";
 import getClosestParent from "./DOM/getClosestParent";
@@ -36,6 +37,7 @@ import trackPageEvent from "./Analytics/trackPageEvent";
 // DOM
 export { collapseElement };
 export { createNodeFromHTML };
+export { decodeCharacters };
 export { expandElement };
 export { getClosestParent };
 export { getIndexOfNode };
