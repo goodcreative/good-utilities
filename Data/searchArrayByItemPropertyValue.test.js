@@ -28,7 +28,7 @@ test('Returns an object from an array of objects', () => {
   expect(typeof searchArrayByItemPropertyValue(testObject.id, "id", testArray)).toEqual('object');
 });
 
-test('Returns the object that contains ID property with a certain value', () => {
+test('Returns the first object that contains an ID property with a certain value', () => {
   expect(searchArrayByItemPropertyValue(testObject.id, "id", testArray)).toEqual(testObject);
 });
 
@@ -36,6 +36,6 @@ test('Returns the first object that contains a given property value, if that pro
   expect(searchArrayByItemPropertyValue(testObject.id, "id", testArray).name).toEqual('John Appleseed');
 });
 
-test('Returns the correct ID for an object containing a certain', () => {
+test('Returns the correct ID for an object containing a certain name', () => {
   expect(searchArrayByItemPropertyValue(testObject.name, "name", testArray).id).toEqual(testObject.id);
 });
