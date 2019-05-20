@@ -9,11 +9,15 @@
 export default function createCustomEvent(eventName, eventData) {
   let customEvent;
 
+  if(eventData === undefined) {
+    eventData = "no data";
+  }
+
   if (window.CustomEvent) {
-    customEvent = new CustomEvent(eventName, { detail: { some: eventData }, bubbles: true });
+    customEvent = new CustomEvent(eventName, { payload: eventData, bubbles: true });
   } else {
     customEvent = document.createEvent('CustomEvent');
-    customEvent.initCustomEvent(eventName, true, true, { some: eventData });
+    customEvent.initCustomEvent(eventName, true, true, { payload: eventData });
   }
 
   return customEvent;
