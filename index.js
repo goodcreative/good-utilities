@@ -31,7 +31,7 @@ import messages from "./Events/messages";
 import trackPageEvent from "./Analytics/trackPageEvent";
 
 // Data
-import searchArrayByItemPropertyValue from  "./Data/searchArrayByItemPropertyValue";
+import searchArrayByItemPropertyValue from "./Data/searchArrayByItemPropertyValue/searchArrayByItemPropertyValue";
 
 /////////////
 // Exports //
