@@ -15,14 +15,14 @@ export default function collapseElement(element) {
   // on the next frame (as soon as the previous style change has taken effect),
   // explicitly set the element's height to its current pixel height, so we
   // aren't transitioning out of 'auto'
-  requestAnimationFrame(() => {
+  window.requestAnimationFrame(() => {
     element.style.height = SECTION_HEIGHT + 'px';
     element.style.transition = ELEMENT_TRANSITION;
 
     // on the next frame (as soon as the previous style change has taken effect),
     // have the element transition to height: 0
-    requestAnimationFrame(() => {
-      element.style.height = 0 + 'px';
+    window.requestAnimationFrame(() => {
+      element.style.height = 0 + "px";
     });
   });
 }
