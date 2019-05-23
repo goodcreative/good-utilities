@@ -13,12 +13,10 @@ export default function bindGlobalMessages() {
   // This may have to be updated if we're looking to bind events and activity
   // to the actual page scroll, rather than using it as a IO fallback, but for
   // now let's assume that's what's going on here.
-  if (typeof (window.IntersectionObserver) === 'undefined') {
-    window.addEventListener('scroll', function () {
-      // Publish global message
-      PubSub.publish(MESSAGES.scroll);
-    });
-  }
+  window.addEventListener('scroll', function () {
+    // Publish global message
+    PubSub.publish(MESSAGES.scroll);
+  });
 
   // Handle debounced resize
   window.onresize = debounce(function () {
