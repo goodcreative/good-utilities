@@ -22,6 +22,8 @@ import wrapElement from "./DOM/wrapElement";
 
 // Events
 import bindGlobalMessages from "./Events/bindGlobalMessages";
+import bindGlobalScrollMessage from "./Events/bindGlobalScrollMessage";
+import bindGlobalResizeMessage from "./Events/bindGlobalResizeMessage";
 import createCustomEvent from "./Events/createCustomEvent";
 import createDelegatedEventListener from "./Events/createDelegatedEventListener";
 import createGlobalMessenger from "./Events/createGlobalMessenger";
