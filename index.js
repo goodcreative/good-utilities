@@ -55,6 +55,8 @@ export { wrapElement };
 
 // Events
 export { bindGlobalMessages };
+export { bindGlobalScrollMessage };
+export { bindGlobalResizeMessage };
 export { createCustomEvent };
 export { createDelegatedEventListener };
 export { createGlobalMessenger };
