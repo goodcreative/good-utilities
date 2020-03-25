@@ -3,18 +3,21 @@
  *
  * @param {DOMElement} element - A single DOM element
  */
-export default function expandElement(element) {
+export default function expandElement(element, callback) {
   // get the height of the element's inner content, regardless of its actual size
-  var SECTION_HEIGHT = element.scrollHeight;
+  const SECTION_HEIGHT = element.scrollHeight;
+  const CALLBACK = callback || null;
 
   // have the element transition to the height of its inner content
   element.style.height = SECTION_HEIGHT + 'px';
 
   // when the next css transition finishes (which should be the one we just triggered)
-  element.addEventListener('transitionend', function expansionEnds() {
+  element.addEventListener('transitionend', function expansionEnds(CALLBACK) {
     // remove this event listener so it only gets triggered once
     element.removeEventListener("transitionend", expansionEnds);
     // remove "height" from the element's inline styles, so it can return to its initial value
     element.style.height = null;
+
+    CALLBACK();
   });
 }
