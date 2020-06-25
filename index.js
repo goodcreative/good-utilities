@@ -20,6 +20,7 @@ import isElementInView from "./DOM/isElementInView";
 import ready from "./DOM/ready";
 import removeInlineStyles from "./DOM/removeInlineStyles";
 import wrapElement from "./DOM/wrapElement";
+import getElementOffsetOnPage from "./DOM/getElementOffsetOnPage";
 
 // Events
 import bindGlobalMessages from "./Events/bindGlobalMessages";
@@ -56,6 +57,7 @@ export { isElementInView };
 export { ready };
 export { removeInlineStyles };
 export { wrapElement };
+export { getElementOffsetOnPage };
 
 // Events
 export { bindGlobalMessages };
