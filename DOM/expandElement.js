@@ -9,7 +9,9 @@ export default function expandElement(element, callback) {
   const CALLBACK = callback || null;
 
   // have the element transition to the height of its inner content
-  element.style.height = SECTION_HEIGHT + 'px';
+  if(SECTION_HEIGHT > 0) {
+    element.style.height = SECTION_HEIGHT + 'px';
+  }
 
   // when the next css transition finishes (which should be the one we just triggered)
   element.addEventListener('transitionend', function expansionEnds(CALLBACK) {
@@ -18,6 +20,8 @@ export default function expandElement(element, callback) {
     // remove "height" from the element's inline styles, so it can return to its initial value
     element.style.height = null;
 
-    CALLBACK();
+    if(CALLBACK !== null) {
+      CALLBACK();
+    }
   });
 }
