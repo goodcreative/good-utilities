@@ -1,6 +1,6 @@
 {
   "name": "@wearegood/good-utilities",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A collection of JavaScript utility functions",
   "main": "index.js",
   "scripts": {
