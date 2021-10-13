@@ -14,7 +14,7 @@ test('Get nearest descendent with nested component', () => {
 
   let parentComponentElement = document.querySelector('#parentComp');
   let parentAction = getClosestDescendentByDepth(parentComponentElement, '.component','.compAction');
-  let parentActionID = parentAction.getAttribute('id');
+  let parentActionID = parentAction.getAttribute('id') || null;
 
   expect(parentActionID).toEqual(testResultID);
 });
@@ -25,12 +25,35 @@ test('Get first nearest descendent with multiple descendents at the same level',
 
   document.body.innerHTML =
   '<div id="parentComp" class="component">' +
+  '  <div class="compAction" id="parentAction">Action</div>' +
+  '  <div class="compAction" id="parentAction2">Action</div>' +
+  '  <div class="compAction" id="parentAction3">Action</div>' +
+  '  <div id="nestedComp" class"component">' +
+  '    <div class="compAction" id="nestedAction">Action</div>' +
+  '  </div>' +
+  '</div>';
+
+  let parentComponentElement = document.querySelector('#parentComp');
+  let parentAction = getClosestDescendentByDepth(parentComponentElement, '.component','.compAction');
+  let parentActionID = parentAction.getAttribute('id');
+
+  expect(parentActionID).toEqual(testResultID);
+});
+
+test('Get first nearest descendent amongst nested descendents', () => {
+
+  let testResultID = 'parentAction';
+
+  document.body.innerHTML =
+  '<div id="parentComp" class="component">' +
   '  <div id="nestedComp" class"component">' +
   '    <div class="compAction" id="nestedAction">Action</div>' +
   '  </div>' +
   '  <div class="compAction" id="parentAction">Action</div>' +
+  '  <div id="nestedComp" class"component">' +
+  '    <div class="compAction" id="nestedAction2">Action</div>' +
+  '  </div>' +
   '  <div class="compAction" id="parentAction2">Action</div>' +
-  '  <div class="compAction" id="parentAction3">Action</div>' +
   '</div>';
 
   let parentComponentElement = document.querySelector('#parentComp');
