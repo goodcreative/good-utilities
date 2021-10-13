@@ -9,7 +9,7 @@ import collapseElement from "./DOM/collapseElement";
 import decodeCharacters from "./DOM/decodeCharacters/decodeCharacters";
 import createNodeFromHTML from "./DOM/createNodeFromHTML";
 import expandElement from "./DOM/expandElement";
-import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth";
+import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth/getClosestDescendentByDepth";
 import getClosestParent from "./DOM/getClosestParent";
 import getIndexOfNode from "./DOM/getIndexOfNode";
 import getIndexOfNodeInNodeList from "./DOM/getIndexOfNodeInNodeList";
