@@ -11,7 +11,7 @@ import createNodeFromHTML from "./DOM/createNodeFromHTML";
 import expandElement from "./DOM/expandElement";
 import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth/getClosestDescendentByDepth";
 import getClosestParent from "./DOM/getClosestParent";
-import getIndexOfNode from "./DOM/getIndexOfNode";
+import getIndexOfNode from "./DOM/getIndexOfNode/getIndexOfNode";
 import getIndexOfNodeInNodeList from "./DOM/getIndexOfNodeInNodeList";
 import getOffset from "./DOM/getOffset";
 import getOuterHeight from "./DOM/getOuterHeight";

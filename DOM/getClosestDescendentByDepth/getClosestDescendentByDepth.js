@@ -11,12 +11,10 @@ export default function getClosestDescendentByDepth(parentElem, parentSelector, 
   // Get all the matching descendents of the parent element passed into the function
   let parentElement = parentElem;
   let descElements = parentElement.querySelectorAll(descendentSelector);
-
   // Set variables for the closestDescendent that we're going to find...
   let closestDescendent = null;
   // and the minimum distance between parent and child that we're going to track
   let domDistance = null;
-
   // If any descendent elements have been found
   if(descElements) {
     // Loop through all the descendent elements and work out how many levels are between
