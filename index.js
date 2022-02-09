@@ -37,6 +37,8 @@ import trackPageEvent from "./Analytics/trackPageEvent";
 
 // Data
 import searchArrayByItemPropertyValue from "./Data/searchArrayByItemPropertyValue/searchArrayByItemPropertyValue";
+import getCookie from "./Data/getCookie";
+import setCookie from "./Data/setCookie";
 
 /////////////
 // Exports //
@@ -75,3 +77,5 @@ export { trackPageEvent };
 
 // Data
 export { searchArrayByItemPropertyValue };
+export { getCookie };
+export { setCookie };
