@@ -7,7 +7,7 @@
  * @param {*} value
  * @param {*} days
  */
-export default function setCookie(cookieName,value,days,config) {
+export default function setCookie(cookieName,value,days,config = "; path=/ ; SameSite=None; Secure") {
   var expires = "";
   if (days) {
       var date = new Date();
