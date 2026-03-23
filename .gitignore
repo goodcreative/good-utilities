@@ -20,3 +20,6 @@ Thumbs.db
 
 # Node Modules
 node_modules
+
+# Coverage
+coverage
