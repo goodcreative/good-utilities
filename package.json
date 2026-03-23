@@ -4,7 +4,9 @@
   "description": "A collection of JavaScript utility functions",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,8 @@
     "pubsub-js": "^1.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "babel-jest": "^24.7.1",
-    "eslint": "^5.16.0",
-    "jest": "^24.7.1"
+    "@vitest/coverage-v8": "^2.0.0",
+    "jsdom": "^25.0.0",
+    "vitest": "^2.0.0"
   }
 }

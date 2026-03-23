@@ -1,6 +1,6 @@
 
-import bindGlobalScrollMessage from "./bindGlobalScrollMessage";
-import bindGlobalResizeMessage from "./bindGlobalResizeMessage";
+import bindGlobalScrollMessage from "../bindGlobalScrollMessage/bindGlobalScrollMessage";
+import bindGlobalResizeMessage from "../bindGlobalResizeMessage/bindGlobalResizeMessage";
 
 /**
  * bindGlobalMessages - Binds event listeners to global browser events and fires global messages in response

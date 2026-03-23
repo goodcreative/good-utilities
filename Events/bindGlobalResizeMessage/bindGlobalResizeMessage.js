@@ -1,7 +1,7 @@
 import PubSub from "pubsub-js";
 import debounce from "debounce";
 
-import MESSAGES from "./messages";
+import MESSAGES from "../messages/messages";
 
 /**
  * bindGlobalMessages - Binds event listeners to global browser events and fires global messages in response
