@@ -27,10 +27,10 @@ export default function trackPageEvent(category, action, label, value) {
 
   } else if (typeof ga !== "undefined") {
     // Using Google Universal Analytics
-    ga("send", "event", thisCategory, thisAction, thisLabel);
+    ga("send", "event", THIS_CATEGORY, THIS_ACTION, THIS_LABEL);
 
   } else if (typeof _gaq !== "undefined") {
     // Using Asynchronous Analytics
-    _gaq.push(["_trackEvent", thisCategory, thisAction, thisLabel]);
+    _gaq.push(["_trackEvent", THIS_CATEGORY, THIS_ACTION, THIS_LABEL]);
   }
 }
