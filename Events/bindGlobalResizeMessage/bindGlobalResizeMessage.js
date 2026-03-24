@@ -1,18 +1,16 @@
-import PubSub from "pubsub-js";
-import debounce from "debounce";
-
-import MESSAGES from "../messages/messages";
+import messageBus from "../messageBus/messageBus.js";
+import MESSAGES from "../messages/messages.js";
 
 /**
- * bindGlobalMessages - Binds event listeners to global browser events and fires global messages in response
- *
- * @returns {type} Description
+ * bindGlobalResizeMessage - Attaches a debounced resize listener to window and
+ * publishes a global message on the messageBus (200ms debounce).
  */
 export default function bindGlobalResizeMessage() {
-  // Handle debounced resize by publishing a global PubSub message from
-  // a single eventListener instance
-  window.onresize = debounce(function() {
-    // Publish global  message
-    PubSub.publish(MESSAGES.resize);
-  }, 200);
+  let timer;
+  window.addEventListener("resize", function() {
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+      messageBus.dispatchEvent(new CustomEvent(MESSAGES.resize));
+    }, 200);
+  });
 }

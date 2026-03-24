@@ -1,17 +1,12 @@
-import PubSub from "pubsub-js";
-
-import MESSAGES from "../messages/messages";
+import messageBus from "../messageBus/messageBus.js";
+import MESSAGES from "../messages/messages.js";
 
 /**
- * bindGlobalMessages - Binds event listeners to global browser events and fires global messages in response
- *
- * @returns {type} Description
+ * bindGlobalScrollMessage - Attaches a scroll listener to window and publishes
+ * a global message on the messageBus on each scroll event.
  */
 export default function bindGlobalScrollMessage() {
-  // Handle page scroll by publishing a global PubSub message from
-  // a single eventListener instance
   window.addEventListener("scroll", function() {
-    // Publish global message
-    PubSub.publish(MESSAGES.scroll);
+    messageBus.dispatchEvent(new CustomEvent(MESSAGES.scroll));
   });
 }

@@ -1,32 +1,43 @@
-import { describe, it, expect, afterEach, vi } from 'vitest';
-import PubSub from 'pubsub-js';
+import { describe, it, expect, vi } from 'vitest';
+import messageBus from '../messageBus/messageBus.js';
 import bindGlobalResizeMessage from './bindGlobalResizeMessage';
 
 describe('bindGlobalResizeMessage', () => {
+  // Each test intercepts window.addEventListener to prevent listener accumulation
+  function captureResizeListener() {
+    let capturedFn;
+    vi.spyOn(window, 'addEventListener').mockImplementation((type, fn) => {
+      if (type === 'resize') capturedFn = fn;
+    });
+    return () => capturedFn;
+  }
+
   afterEach(() => {
     vi.restoreAllMocks();
     vi.useRealTimers();
-    window.onresize = null;
   });
 
-  it('publishes page/resize after debounce delay when window resizes', async () => {
+  it('dispatches page/resize on messageBus after debounce delay', () => {
     vi.useFakeTimers();
-    const publishSpy = vi.spyOn(PubSub, 'publish');
+    const getListener = captureResizeListener();
+    const dispatchSpy = vi.spyOn(messageBus, 'dispatchEvent');
     bindGlobalResizeMessage();
-    window.onresize();
-    expect(publishSpy).not.toHaveBeenCalled();
+    getListener()();
+    expect(dispatchSpy).not.toHaveBeenCalled();
     vi.advanceTimersByTime(200);
-    expect(publishSpy).toHaveBeenCalledWith('page/resize');
+    expect(dispatchSpy).toHaveBeenCalledOnce();
+    expect(dispatchSpy.mock.calls[0][0].type).toBe('page/resize');
   });
 
-  it('only publishes once for multiple rapid resize events', async () => {
+  it('only dispatches once for multiple rapid resize events', () => {
     vi.useFakeTimers();
-    const publishSpy = vi.spyOn(PubSub, 'publish');
+    const getListener = captureResizeListener();
+    const dispatchSpy = vi.spyOn(messageBus, 'dispatchEvent');
     bindGlobalResizeMessage();
-    window.onresize();
-    window.onresize();
-    window.onresize();
+    getListener()();
+    getListener()();
+    getListener()();
     vi.advanceTimersByTime(200);
-    expect(publishSpy).toHaveBeenCalledTimes(1);
+    expect(dispatchSpy).toHaveBeenCalledTimes(1);
   });
 });

@@ -5,77 +5,108 @@
 /////////////
 
 // DOM
-import collapseElement from "./DOM/collapseElement/collapseElement";
-import decodeCharacters from "./DOM/decodeCharacters/decodeCharacters";
-import createNodeFromHTML from "./DOM/createNodeFromHTML/createNodeFromHTML";
-import expandElement from "./DOM/expandElement/expandElement";
-import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth/getClosestDescendentByDepth";
-import getClosestParent from "./DOM/getClosestParent/getClosestParent";
-import getIndexOfNode from "./DOM/getIndexOfNode/getIndexOfNode";
-import getIndexOfNodeInNodeList from "./DOM/getIndexOfNodeInNodeList/getIndexOfNodeInNodeList";
-import getOffset from "./DOM/getOffset/getOffset";
-import getOuterHeight from "./DOM/getOuterHeight/getOuterHeight";
-import getOuterWidth from "./DOM/getOuterWidth/getOuterWidth";
-import getURLQueryString from "./DOM/getURLQueryString/getURLQueryString";
-import isElementInView from "./DOM/isElementInView/isElementInView";
-import ready from "./DOM/ready/ready";
-import removeInlineStyles from "./DOM/removeInlineStyles/removeInlineStyles";
-import wrapElement from "./DOM/wrapElement/wrapElement";
-import getElementOffsetOnPage from "./DOM/getElementOffsetOnPage/getElementOffsetOnPage";
+import createNodeFromHTML from "./DOM/createNodeFromHTML/createNodeFromHTML.js";
+import decodeCharacters from "./DOM/decodeCharacters/decodeCharacters.js";
+import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth/getClosestDescendentByDepth.js";
+import getIndexOfNode from "./DOM/getIndexOfNode/getIndexOfNode.js";
+import getIndexOfNodeInNodeList from "./DOM/getIndexOfNodeInNodeList/getIndexOfNodeInNodeList.js";
+import getOffset from "./DOM/getOffset/getOffset.js";
+import getOuterHeight from "./DOM/getOuterHeight/getOuterHeight.js";
+import getOuterWidth from "./DOM/getOuterWidth/getOuterWidth.js";
+import isElementInView from "./DOM/isElementInView/isElementInView.js";
+import onIntersect from "./DOM/onIntersect/onIntersect.js";
+import onResize from "./DOM/onResize/onResize.js";
+import prefersReducedMotion from "./DOM/prefersReducedMotion/prefersReducedMotion.js";
+import ready from "./DOM/ready/ready.js";
+import removeInlineStyles from "./DOM/removeInlineStyles/removeInlineStyles.js";
+import wrapElement from "./DOM/wrapElement/wrapElement.js";
 
 // Events
-import bindGlobalMessages from "./Events/bindGlobalMessages/bindGlobalMessages";
-import bindGlobalScrollMessage from "./Events/bindGlobalScrollMessage/bindGlobalScrollMessage";
-import bindGlobalResizeMessage from "./Events/bindGlobalResizeMessage/bindGlobalResizeMessage";
-import createCustomEvent from "./Events/createCustomEvent/createCustomEvent";
-import createDelegatedEventListener from "./Events/createDelegatedEventListener/createDelegatedEventListener";
-import createGlobalMessenger from "./Events/createGlobalMessenger/createGlobalMessenger";
-import messages from "./Events/messages/messages";
+import messageBus from "./Events/messageBus/messageBus.js";
+import bindGlobalMessages from "./Events/bindGlobalMessages/bindGlobalMessages.js";
+import bindGlobalScrollMessage from "./Events/bindGlobalScrollMessage/bindGlobalScrollMessage.js";
+import bindGlobalResizeMessage from "./Events/bindGlobalResizeMessage/bindGlobalResizeMessage.js";
+import createDelegatedEventListener from "./Events/createDelegatedEventListener/createDelegatedEventListener.js";
+import createGlobalMessenger from "./Events/createGlobalMessenger/createGlobalMessenger.js";
+import messages from "./Events/messages/messages.js";
 
-// Analytics
-import trackPageEvent from "./Analytics/trackPageEvent/trackPageEvent";
+// Storage
+import getCookie from "./Storage/getCookie/getCookie.js";
+import setCookie from "./Storage/setCookie/setCookie.js";
+import getLocalStorage from "./Storage/getLocalStorage/getLocalStorage.js";
+import setLocalStorage from "./Storage/setLocalStorage/setLocalStorage.js";
+import removeLocalStorage from "./Storage/removeLocalStorage/removeLocalStorage.js";
+import getSessionStorage from "./Storage/getSessionStorage/getSessionStorage.js";
+import setSessionStorage from "./Storage/setSessionStorage/setSessionStorage.js";
+import removeSessionStorage from "./Storage/removeSessionStorage/removeSessionStorage.js";
 
-// Data
-import searchArrayByItemPropertyValue from "./Data/searchArrayByItemPropertyValue/searchArrayByItemPropertyValue";
-import getCookie from "./Data/getCookie/getCookie";
-import setCookie from "./Data/setCookie/setCookie";
+// String
+import truncate from "./String/truncate/truncate.js";
+import slugify from "./String/slugify/slugify.js";
+import { capitalize, titleCase } from "./String/capitalize/capitalize.js";
+import stripHTML from "./String/stripHTML/stripHTML.js";
+
+// Array
+import groupBy from "./Array/groupBy/groupBy.js";
+import deepClone from "./Array/deepClone/deepClone.js";
+import chunk from "./Array/chunk/chunk.js";
+
+// Async
+import debounce from "./Async/debounce/debounce.js";
+import throttle from "./Async/throttle/throttle.js";
 
 /////////////
 // Exports //
 /////////////
 
 // DOM
-export { collapseElement };
 export { createNodeFromHTML };
 export { decodeCharacters };
-export { expandElement };
 export { getClosestDescendentByDepth };
-export { getClosestParent };
 export { getIndexOfNode };
 export { getIndexOfNodeInNodeList };
 export { getOffset };
 export { getOuterHeight };
 export { getOuterWidth };
-export { getURLQueryString };
 export { isElementInView };
+export { onIntersect };
+export { onResize };
+export { prefersReducedMotion };
 export { ready };
 export { removeInlineStyles };
 export { wrapElement };
-export { getElementOffsetOnPage };
 
 // Events
+export { messageBus };
 export { bindGlobalMessages };
 export { bindGlobalScrollMessage };
 export { bindGlobalResizeMessage };
-export { createCustomEvent };
 export { createDelegatedEventListener };
 export { createGlobalMessenger };
 export { messages };
 
-// Analytics
-export { trackPageEvent };
-
-// Data
-export { searchArrayByItemPropertyValue };
+// Storage
 export { getCookie };
 export { setCookie };
+export { getLocalStorage };
+export { setLocalStorage };
+export { removeLocalStorage };
+export { getSessionStorage };
+export { setSessionStorage };
+export { removeSessionStorage };
+
+// String
+export { truncate };
+export { slugify };
+export { capitalize };
+export { titleCase };
+export { stripHTML };
+
+// Array
+export { groupBy };
+export { deepClone };
+export { chunk };
+
+// Async
+export { debounce };
+export { throttle };

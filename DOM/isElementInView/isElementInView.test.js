@@ -1,41 +1,39 @@
-import { describe, it, expect, afterEach, vi } from 'vitest';
-import isElementInView from './isElementInView';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import isElementInView from './isElementInView.js';
 
 describe('isElementInView', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  const makeEl = (top, height) => {
-    const el = document.createElement('div');
-    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({ top });
-    Object.defineProperty(el, 'offsetHeight', { configurable: true, get: () => height });
-    return el;
-  };
+  let MockIntersectionObserver;
 
   beforeEach(() => {
-    Object.defineProperty(window, 'innerHeight', { configurable: true, get: () => 600 });
-    Object.defineProperty(window, 'scrollY', { configurable: true, get: () => 0 });
+    MockIntersectionObserver = vi.fn((callback) => {
+      const instance = {
+        observe: vi.fn(),
+        disconnect: vi.fn(),
+        _trigger: (entries) => callback(entries)
+      };
+      return instance;
+    });
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
   });
 
-  it('returns true when element is fully in view', () => {
-    const el = makeEl(100, 200);
-    expect(isElementInView(el)).toBe(true);
+  it('resolves true when element intersects', async () => {
+    const el = document.createElement('div');
+    const promise = isElementInView(el);
+    const observer = MockIntersectionObserver.mock.results[0].value;
+    observer._trigger([{ isIntersecting: true, target: el }]);
+    await expect(promise).resolves.toBe(true);
   });
 
-  it('returns true when element partially overlaps viewport bottom', () => {
-    const el = makeEl(500, 200); // bottom at 700, top at 500, viewport 0-600
-    expect(isElementInView(el)).toBe(true);
-  });
-
-  it('returns false when element is entirely below viewport', () => {
-    const el = makeEl(700, 100); // top 700, viewport ends at 600
-    expect(isElementInView(el)).toBe(false);
-  });
-
-  it('returns false when element is entirely above viewport', () => {
-    Object.defineProperty(window, 'scrollY', { configurable: true, get: () => 1000 });
-    const el = makeEl(-200, 100); // top -200 in viewport coords, element above
-    expect(isElementInView(el)).toBe(false);
+  it('does not resolve when element is not intersecting', async () => {
+    const el = document.createElement('div');
+    const promise = isElementInView(el);
+    const observer = MockIntersectionObserver.mock.results[0].value;
+    observer._trigger([{ isIntersecting: false, target: el }]);
+    // Promise should remain pending — race against a quick timeout
+    const result = await Promise.race([
+      promise,
+      new Promise((r) => setTimeout(() => r('pending'), 10))
+    ]);
+    expect(result).toBe('pending');
   });
 });

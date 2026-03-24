@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import PubSub from 'pubsub-js';
+import messageBus from '../messageBus/messageBus.js';
 import bindGlobalScrollMessage from './bindGlobalScrollMessage';
 
 describe('bindGlobalScrollMessage', () => {
@@ -7,10 +7,11 @@ describe('bindGlobalScrollMessage', () => {
     vi.restoreAllMocks();
   });
 
-  it('publishes page/scroll when window scroll event fires', () => {
-    const publishSpy = vi.spyOn(PubSub, 'publish');
+  it('dispatches page/scroll on messageBus when window scrolls', () => {
+    const dispatchSpy = vi.spyOn(messageBus, 'dispatchEvent');
     bindGlobalScrollMessage();
     window.dispatchEvent(new Event('scroll'));
-    expect(publishSpy).toHaveBeenCalledWith('page/scroll');
+    expect(dispatchSpy).toHaveBeenCalledOnce();
+    expect(dispatchSpy.mock.calls[0][0].type).toBe('page/scroll');
   });
 });
