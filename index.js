@@ -5,55 +5,55 @@
 /////////////
 
 // DOM
-import createNodeFromHTML from "./DOM/createNodeFromHTML/createNodeFromHTML.js";
-import decodeCharacters from "./DOM/decodeCharacters/decodeCharacters.js";
-import getClosestDescendentByDepth from "./DOM/getClosestDescendentByDepth/getClosestDescendentByDepth.js";
-import getIndexOfNode from "./DOM/getIndexOfNode/getIndexOfNode.js";
-import getIndexOfNodeInNodeList from "./DOM/getIndexOfNodeInNodeList/getIndexOfNodeInNodeList.js";
-import getOffset from "./DOM/getOffset/getOffset.js";
-import getOuterHeight from "./DOM/getOuterHeight/getOuterHeight.js";
-import getOuterWidth from "./DOM/getOuterWidth/getOuterWidth.js";
-import isElementInView from "./DOM/isElementInView/isElementInView.js";
-import onIntersect from "./DOM/onIntersect/onIntersect.js";
-import onResize from "./DOM/onResize/onResize.js";
-import prefersReducedMotion from "./DOM/prefersReducedMotion/prefersReducedMotion.js";
-import ready from "./DOM/ready/ready.js";
-import removeInlineStyles from "./DOM/removeInlineStyles/removeInlineStyles.js";
-import wrapElement from "./DOM/wrapElement/wrapElement.js";
+import createNodeFromHTML from "./src/DOM/createNodeFromHTML/createNodeFromHTML.js";
+import decodeCharacters from "./src/DOM/decodeCharacters/decodeCharacters.js";
+import getClosestDescendentByDepth from "./src/DOM/getClosestDescendentByDepth/getClosestDescendentByDepth.js";
+import getIndexOfNode from "./src/DOM/getIndexOfNode/getIndexOfNode.js";
+import getIndexOfNodeInNodeList from "./src/DOM/getIndexOfNodeInNodeList/getIndexOfNodeInNodeList.js";
+import getOffset from "./src/DOM/getOffset/getOffset.js";
+import getOuterHeight from "./src/DOM/getOuterHeight/getOuterHeight.js";
+import getOuterWidth from "./src/DOM/getOuterWidth/getOuterWidth.js";
+import isElementInView from "./src/DOM/isElementInView/isElementInView.js";
+import onIntersect from "./src/DOM/onIntersect/onIntersect.js";
+import onResize from "./src/DOM/onResize/onResize.js";
+import prefersReducedMotion from "./src/DOM/prefersReducedMotion/prefersReducedMotion.js";
+import ready from "./src/DOM/ready/ready.js";
+import removeInlineStyles from "./src/DOM/removeInlineStyles/removeInlineStyles.js";
+import wrapElement from "./src/DOM/wrapElement/wrapElement.js";
 
 // Events
-import messageBus from "./Events/messageBus/messageBus.js";
-import bindGlobalMessages from "./Events/bindGlobalMessages/bindGlobalMessages.js";
-import bindGlobalScrollMessage from "./Events/bindGlobalScrollMessage/bindGlobalScrollMessage.js";
-import bindGlobalResizeMessage from "./Events/bindGlobalResizeMessage/bindGlobalResizeMessage.js";
-import createDelegatedEventListener from "./Events/createDelegatedEventListener/createDelegatedEventListener.js";
-import createGlobalMessenger from "./Events/createGlobalMessenger/createGlobalMessenger.js";
-import messages from "./Events/messages/messages.js";
+import messageBus from "./src/Events/messageBus/messageBus.js";
+import bindGlobalMessages from "./src/Events/bindGlobalMessages/bindGlobalMessages.js";
+import bindGlobalScrollMessage from "./src/Events/bindGlobalScrollMessage/bindGlobalScrollMessage.js";
+import bindGlobalResizeMessage from "./src/Events/bindGlobalResizeMessage/bindGlobalResizeMessage.js";
+import createDelegatedEventListener from "./src/Events/createDelegatedEventListener/createDelegatedEventListener.js";
+import createGlobalMessenger from "./src/Events/createGlobalMessenger/createGlobalMessenger.js";
+import messages from "./src/Events/messages/messages.js";
 
 // Storage
-import getCookie from "./Storage/getCookie/getCookie.js";
-import setCookie from "./Storage/setCookie/setCookie.js";
-import getLocalStorage from "./Storage/getLocalStorage/getLocalStorage.js";
-import setLocalStorage from "./Storage/setLocalStorage/setLocalStorage.js";
-import removeLocalStorage from "./Storage/removeLocalStorage/removeLocalStorage.js";
-import getSessionStorage from "./Storage/getSessionStorage/getSessionStorage.js";
-import setSessionStorage from "./Storage/setSessionStorage/setSessionStorage.js";
-import removeSessionStorage from "./Storage/removeSessionStorage/removeSessionStorage.js";
+import getCookie from "./src/Storage/getCookie/getCookie.js";
+import setCookie from "./src/Storage/setCookie/setCookie.js";
+import getLocalStorage from "./src/Storage/getLocalStorage/getLocalStorage.js";
+import setLocalStorage from "./src/Storage/setLocalStorage/setLocalStorage.js";
+import removeLocalStorage from "./src/Storage/removeLocalStorage/removeLocalStorage.js";
+import getSessionStorage from "./src/Storage/getSessionStorage/getSessionStorage.js";
+import setSessionStorage from "./src/Storage/setSessionStorage/setSessionStorage.js";
+import removeSessionStorage from "./src/Storage/removeSessionStorage/removeSessionStorage.js";
 
 // String
-import truncate from "./String/truncate/truncate.js";
-import slugify from "./String/slugify/slugify.js";
-import { capitalize, titleCase } from "./String/capitalize/capitalize.js";
-import stripHTML from "./String/stripHTML/stripHTML.js";
+import truncate from "./src/String/truncate/truncate.js";
+import slugify from "./src/String/slugify/slugify.js";
+import { capitalize, titleCase } from "./src/String/capitalize/capitalize.js";
+import stripHTML from "./src/String/stripHTML/stripHTML.js";
 
 // Array
-import groupBy from "./Array/groupBy/groupBy.js";
-import deepClone from "./Array/deepClone/deepClone.js";
-import chunk from "./Array/chunk/chunk.js";
+import groupBy from "./src/Array/groupBy/groupBy.js";
+import deepClone from "./src/Array/deepClone/deepClone.js";
+import chunk from "./src/Array/chunk/chunk.js";
 
 // Async
-import debounce from "./Async/debounce/debounce.js";
-import throttle from "./Async/throttle/throttle.js";
+import debounce from "./src/Async/debounce/debounce.js";
+import throttle from "./src/Async/throttle/throttle.js";
 
 /////////////
 // Exports //

@@ -3,12 +3,10 @@
 
   ],
   "eablokker.tabsSidebar.config.customKindGroupsOrder" : [
-    "javascript",
-    "json"
+    "javascript"
   ],
   "eablokker.tabsSidebar.config.customTabOrder" : [
     "file:\/\/\/Users\/jamieboyd\/GitHub\/good-utilities\/index.js",
-    "file:\/\/\/Users\/jamieboyd\/GitHub\/good-utilities\/DOM\/getURLQueryString\/getURLQueryString.js",
-    "file:\/\/\/Users\/jamieboyd\/GitHub\/good-utilities\/package.json"
+    "file:\/\/\/Users\/jamieboyd\/GitHub\/good-utilities\/DOM\/getURLQueryString\/getURLQueryString.js"
   ]
 }

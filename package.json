@@ -6,12 +6,12 @@
   "main": "index.js",
   "exports": {
     ".": "./index.js",
-    "./DOM/*": "./DOM/*/*.js",
-    "./Events/*": "./Events/*/*.js",
-    "./Storage/*": "./Storage/*/*.js",
-    "./String/*": "./String/*/*.js",
-    "./Array/*": "./Array/*/*.js",
-    "./Async/*": "./Async/*/*.js"
+    "./DOM/*": "./src/DOM/*/*.js",
+    "./Events/*": "./src/Events/*/*.js",
+    "./Storage/*": "./src/Storage/*/*.js",
+    "./String/*": "./src/String/*/*.js",
+    "./Array/*": "./src/Array/*/*.js",
+    "./Async/*": "./src/Async/*/*.js"
   },
   "scripts": {
     "test": "vitest run",
