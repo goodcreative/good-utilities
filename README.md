@@ -1,6 +1,8 @@
 # Good Utilities
 
-A collection of battle-tested JavaScript utility functions for DOM manipulation, event handling, analytics tracking, and data operations — accumulated across many projects and packaged for reuse.
+A collection of battle-tested JavaScript utility functions for DOM manipulation, event handling, storage, strings, arrays, and async operations — accumulated across many projects and packaged for reuse.
+
+**v2.0** — pure ESM, zero runtime dependencies, modern browser APIs throughout.
 
 ## Installation
 
@@ -10,31 +12,17 @@ npm install @wearegood/good-utilities
 
 ## Usage
 
-All functions are available as named exports from the package root:
+All functions are named exports from the package root:
 
 ```js
-import { collapseElement, getCookie, createCustomEvent } from '@wearegood/good-utilities';
+import { getOffset, debounce, slugify, getCookie } from '@wearegood/good-utilities';
 ```
+
+---
 
 ## API Reference
 
 ### DOM
-
----
-
-#### `collapseElement(element)`
-
-Animates an element's height to 0 using `requestAnimationFrame` to ensure smooth CSS transitions. Does not remove the element from the DOM.
-
-- `element` *(Element)* — the DOM element to collapse
-
----
-
-#### `expandElement(element)`
-
-Expands a collapsed element to its natural height by reading `scrollHeight`, then removes the inline height once the CSS transition completes.
-
-- `element` *(Element)* — the DOM element to expand
 
 ---
 
@@ -44,7 +32,7 @@ Parses an HTML string and returns the resulting DOM nodes.
 
 - `htmlString` *(string)* — an HTML string to parse
 
-**Returns** `NodeList` — the parsed child nodes
+**Returns** `NodeList`
 
 ```js
 const nodes = createNodeFromHTML('<li>Item</li><li>Item</li>');
@@ -57,53 +45,21 @@ document.querySelector('ul').append(...nodes);
 
 Decodes HTML entities in a string (e.g. `&amp;` → `&`).
 
-- `text` *(string)* — a string that may contain HTML entities
+- `text` *(string)*
 
-**Returns** `string` — the decoded string
-
----
-
-#### `getClosestParent(el, selector[, includeSelf])`
-
-Traverses up the DOM to find the nearest ancestor matching a CSS selector.
-
-- `el` *(Element)* — the starting element
-- `selector` *(string)* — a CSS selector to match against
-- `includeSelf` *(boolean, optional)* — if `true`, returns `el` itself if it matches
-
-**Returns** `Element|null`
+**Returns** `string`
 
 ---
 
 #### `getClosestDescendentByDepth(parentElem, parentSelector, descendentSelector)`
 
-Among all descendants of `parentElem` that match `descendentSelector`, returns the one closest in DOM depth to `parentElem` (i.e. the shallowest match). If multiple descendants tie for the same depth, returns the first.
+Among all descendants of `parentElem` matching `descendentSelector`, returns the one shallowest in DOM depth. If multiple tie, returns the first.
 
-- `parentElem` *(Element)* — the root element to search within
+- `parentElem` *(Element)*
 - `parentSelector` *(string)* — CSS selector identifying `parentElem`'s role (used to calculate relative depth)
-- `descendentSelector` *(string)* — CSS selector for the target descendants
+- `descendentSelector` *(string)* — CSS selector for target descendants
 
 **Returns** `Element|null`
-
----
-
-#### `getElementOffsetOnPage(el)`
-
-Returns an element's position relative to the top-left of the full page, accounting for scroll.
-
-- `el` *(Element)* — a DOM element
-
-**Returns** `{ top: number, left: number }`
-
----
-
-#### `getOffset(el)`
-
-Returns an element's offset from the top-left of the page using `getBoundingClientRect` plus `scrollX`/`scrollY`.
-
-- `el` *(Element)* — a DOM element
-
-**Returns** `{ left: number, top: number }`
 
 ---
 
@@ -111,7 +67,7 @@ Returns an element's offset from the top-left of the page using `getBoundingClie
 
 Returns the zero-based index of a DOM node among its siblings.
 
-- `node` *(Node)* — a DOM node
+- `node` *(Node)*
 
 **Returns** `number`
 
@@ -121,10 +77,20 @@ Returns the zero-based index of a DOM node among its siblings.
 
 Returns the zero-based index of a node within a `NodeList`, or `-1` if not found.
 
-- `node` *(Node)* — the node to locate
-- `nodeList` *(NodeList)* — the list to search
+- `node` *(Node)*
+- `nodeList` *(NodeList)*
 
 **Returns** `number`
+
+---
+
+#### `getOffset(el)`
+
+Returns an element's position relative to the top-left of the full page.
+
+- `el` *(Element)*
+
+**Returns** `{ left: number, top: number }`
 
 ---
 
@@ -132,9 +98,9 @@ Returns the zero-based index of a node within a `NodeList`, or `-1` if not found
 
 Returns the height of an element including its top and bottom margins.
 
-- `el` *(Element)* — a DOM element
+- `el` *(Element)*
 
-**Returns** `number` — height in pixels
+**Returns** `number` — pixels
 
 ---
 
@@ -142,25 +108,68 @@ Returns the height of an element including its top and bottom margins.
 
 Returns the width of an element including its left and right margins.
 
-- `el` *(Element)* — a DOM element
+- `el` *(Element)*
 
-**Returns** `number` — width in pixels
-
----
-
-#### `getURLQueryString()`
-
-Parses the current page URL's query string and returns the parameters as an array with both numeric and named (associative) access.
-
-**Returns** `Array` — query params accessible by index or by key (e.g. `result['foo']`)
+**Returns** `number` — pixels
 
 ---
 
-#### `isElementInView(element)`
+#### `isElementInView(element[, options])`
 
-Checks whether an element is currently visible within the viewport.
+Returns a Promise that resolves to `true` when the element enters the viewport. Uses `IntersectionObserver`.
 
-- `element` *(Element)* — a DOM element
+- `element` *(Element)*
+- `options` *(object, optional)* — `IntersectionObserver` options (`root`, `rootMargin`, `threshold`)
+
+**Returns** `Promise<boolean>`
+
+```js
+isElementInView(document.querySelector('.hero')).then(() => {
+  // element is now visible
+});
+```
+
+---
+
+#### `onIntersect(el, callback[, options])`
+
+Sets up an `IntersectionObserver` on an element and calls `callback` on each intersection change. Returns the observer so it can be disconnected.
+
+- `el` *(Element)*
+- `callback` *(Function)* — called with `(entry, observer)`
+- `options` *(object, optional)* — `IntersectionObserver` options
+
+**Returns** `IntersectionObserver`
+
+```js
+const observer = onIntersect(el, (entry) => {
+  if (entry.isIntersecting) console.log('visible');
+});
+// later: observer.disconnect();
+```
+
+---
+
+#### `onResize(el, callback)`
+
+Sets up a `ResizeObserver` on an element. Returns the observer so it can be disconnected.
+
+- `el` *(Element)*
+- `callback` *(Function)* — called with `(entry, observer)`
+
+**Returns** `ResizeObserver`
+
+```js
+const observer = onResize(el, (entry) => {
+  console.log(entry.contentRect.width);
+});
+```
+
+---
+
+#### `prefersReducedMotion()`
+
+Returns `true` if the user has requested reduced motion via `prefers-reduced-motion: reduce`.
 
 **Returns** `boolean`
 
@@ -170,7 +179,7 @@ Checks whether an element is currently visible within the viewport.
 
 Executes a callback when the DOM is fully loaded. Fires immediately if the DOM is already ready.
 
-- `fn` *(Function)* — the callback to invoke
+- `fn` *(Function)*
 
 ---
 
@@ -178,7 +187,7 @@ Executes a callback when the DOM is fully loaded. Fires immediately if the DOM i
 
 Clears all inline styles from an element by removing the `style` attribute.
 
-- `element` *(Element)* — a DOM element
+- `element` *(Element)*
 
 ---
 
@@ -187,7 +196,7 @@ Clears all inline styles from an element by removing the `style` attribute.
 Wraps a DOM element inside a container element, preserving its position in the document.
 
 - `el` *(Element)* — the element to wrap
-- `wrapper` *(Element)* — the container element to wrap it in
+- `wrapper` *(Element)* — the container to wrap it in
 
 ```js
 const div = document.createElement('div');
@@ -199,13 +208,34 @@ wrapElement(document.querySelector('.target'), div);
 
 ### Events
 
-This module uses [PubSub.js](https://github.com/mroderick/PubSubJS) for global messaging and [delegate](https://github.com/zenorocha/delegate) for event delegation.
+The Events module uses a singleton `EventTarget` as a zero-dependency pub/sub message bus.
+
+---
+
+#### `messageBus`
+
+A singleton `EventTarget` instance used as the global message bus. Publish and subscribe using the standard `EventTarget` API:
+
+```js
+import { messageBus, messages } from '@wearegood/good-utilities';
+
+// Subscribe
+messageBus.addEventListener(messages.scroll, (e) => {
+  console.log('page scrolled', e.detail);
+});
+
+// Publish
+messageBus.dispatchEvent(new CustomEvent(messages.scroll, { detail: data }));
+
+// Unsubscribe
+messageBus.removeEventListener(messages.scroll, handler);
+```
 
 ---
 
 #### `messages`
 
-An object of predefined PubSub message string constants. Import and use these instead of raw strings to avoid typos and keep message names consistent across a project.
+An object of predefined message string constants. Use these instead of raw strings to keep message names consistent.
 
 | Key | Value |
 |---|---|
@@ -225,51 +255,40 @@ An object of predefined PubSub message string constants. Import and use these in
 
 #### `bindGlobalMessages()`
 
-Convenience function that binds both the global scroll and resize PubSub message listeners in one call.
+Convenience function — binds both global scroll and resize message listeners in one call.
 
 ---
 
 #### `bindGlobalScrollMessage()`
 
-Attaches a `scroll` listener to `window` that publishes a `page/scroll` PubSub message on each scroll event.
+Attaches a `scroll` listener to `window` that dispatches `page/scroll` on `messageBus`.
 
 ---
 
 #### `bindGlobalResizeMessage()`
 
-Attaches a debounced (200ms) `resize` listener to `window` that publishes a `page/resize` PubSub message.
-
----
-
-#### `createCustomEvent(eventName, eventData)`
-
-Creates and returns a `CustomEvent` with the provided name and data payload.
-
-- `eventName` *(string)* — the event type name
-- `eventData` *(any)* — data attached at `event.detail.data`; the event also has `bubbles: true`
-
-**Returns** `CustomEvent`
+Attaches a debounced (200ms) `resize` listener to `window` that dispatches `page/resize` on `messageBus`.
 
 ---
 
 #### `createDelegatedEventListener(eventType, selector, eventToTrigger[, eventData])`
 
-Sets up a delegated event listener on `document.body`. When a matching element fires the event, `preventDefault` and `stopPropagation` are called, and a custom event is dispatched on the target element.
+Sets up a delegated event listener on `document.body`. When a matching element fires the event, `preventDefault` and `stopPropagation` are called, and a `CustomEvent` is dispatched on the target element.
 
-- `eventType` *(string)* — the DOM event type to listen for (e.g. `"click"`)
-- `selector` *(string)* — CSS selector for the target elements
-- `eventToTrigger` *(string)* — name of the custom event to dispatch on the target
-- `eventData` *(any, optional)* — data to include in the custom event's `detail.data`
+- `eventType` *(string)* — DOM event to listen for (e.g. `"click"`)
+- `selector` *(string)* — CSS selector for target elements
+- `eventToTrigger` *(string)* — name of the custom event to dispatch
+- `eventData` *(any, optional)* — attached at `event.detail.data`
 
 ---
 
 #### `createGlobalMessenger(eventType, selector, message[, preventBubble])`
 
-Sets up a delegated event listener on `document.body` that publishes a PubSub message when a matching element fires the event.
+Sets up a delegated event listener on `document.body` that publishes a message on `messageBus` when a matching element fires the event.
 
-- `eventType` *(string)* — the DOM event type to listen for
-- `selector` *(string)* — CSS selector for the target elements
-- `message` *(string)* — the PubSub message to publish
+- `eventType` *(string)*
+- `selector` *(string)*
+- `message` *(string)* — message topic to dispatch on `messageBus`
 - `preventBubble` *(boolean, optional)* — if `true`, calls `preventDefault` and `stopPropagation`
 
 ```js
@@ -280,28 +299,7 @@ createGlobalMessenger('click', '.open-modal', messages.displayModal, true);
 
 ---
 
-### Analytics
-
----
-
-#### `trackPageEvent(category, action[, label[, value]])`
-
-Fires a Google Analytics event. Automatically detects which analytics implementation is present and uses the appropriate API:
-
-- **Google Tag Manager** — pushes a `GAEvent` to `window.dataLayer`
-- **Universal Analytics** — calls `window.ga('send', 'event', ...)`
-- **Asynchronous Analytics** — pushes to `window._gaq`
-
-Does nothing if none of the above are present.
-
-- `category` *(string)* — event category
-- `action` *(string)* — event action
-- `label` *(string, optional)* — event label
-- `value` *(number, optional)* — event value
-
----
-
-### Data
+### Storage
 
 ---
 
@@ -309,9 +307,9 @@ Does nothing if none of the above are present.
 
 Returns the value of a browser cookie by name.
 
-- `cookieName` *(string)* — the name of the cookie to retrieve
+- `cookieName` *(string)*
 
-**Returns** `string|null` — the cookie value, or `null` if not found
+**Returns** `string|null`
 
 ---
 
@@ -319,26 +317,214 @@ Returns the value of a browser cookie by name.
 
 Sets a browser cookie.
 
-- `cookieName` *(string)* — the cookie name
-- `value` *(string)* — the cookie value
-- `days` *(number, optional)* — number of days until expiry; omit for a session cookie
+- `cookieName` *(string)*
+- `value` *(string)*
+- `days` *(number, optional)* — expiry in days; omit for session cookie
 - `config` *(string, optional)* — cookie attribute string; defaults to `"; path=/ ; SameSite=None; Secure"`
 
 ---
 
-#### `searchArrayByItemPropertyValue(nameKey, property, arrayToSearch)`
+#### `getLocalStorage(key)`
 
-Searches an array of objects for the first item where `item[property] === nameKey`.
+Gets a `localStorage` item, automatically parsing JSON. Returns `null` if the key doesn't exist.
 
-- `nameKey` *(any)* — the value to match
-- `property` *(string)* — the property name to check on each object
-- `arrayToSearch` *(Array)* — the array of objects to search
+- `key` *(string)*
 
-**Returns** `object|false` — the first matching object, or `false` if none found
+**Returns** `*`
+
+---
+
+#### `setLocalStorage(key, value)`
+
+Sets a `localStorage` item, automatically JSON-stringifying the value.
+
+- `key` *(string)*
+- `value` *(any)*
+
+---
+
+#### `removeLocalStorage(key)`
+
+Removes a `localStorage` item.
+
+- `key` *(string)*
+
+---
+
+#### `getSessionStorage(key)`
+
+Gets a `sessionStorage` item, automatically parsing JSON.
+
+- `key` *(string)*
+
+**Returns** `*`
+
+---
+
+#### `setSessionStorage(key, value)`
+
+Sets a `sessionStorage` item, automatically JSON-stringifying the value.
+
+- `key` *(string)*
+- `value` *(any)*
+
+---
+
+#### `removeSessionStorage(key)`
+
+Removes a `sessionStorage` item.
+
+- `key` *(string)*
+
+---
+
+### String
+
+---
+
+#### `truncate(str, maxLen[, suffix])`
+
+Truncates a string to a maximum length, appending a suffix if cut.
+
+- `str` *(string)*
+- `maxLen` *(number)*
+- `suffix` *(string, optional)* — defaults to `'…'`
+
+**Returns** `string`
 
 ```js
-const users = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }];
-searchArrayByItemPropertyValue(2, 'id', users); // { id: 2, name: 'Bob' }
+truncate('Hello, world!', 7); // 'Hello, …'
+```
+
+---
+
+#### `slugify(str)`
+
+Converts a string to a URL-safe slug.
+
+- `str` *(string)*
+
+**Returns** `string`
+
+```js
+slugify('Hello Wörld!'); // 'hello-world'
+```
+
+---
+
+#### `capitalize(str)`
+
+Capitalizes the first letter of a string.
+
+- `str` *(string)*
+
+**Returns** `string`
+
+---
+
+#### `titleCase(str)`
+
+Capitalizes the first letter of each word.
+
+- `str` *(string)*
+
+**Returns** `string`
+
+```js
+titleCase('hello world'); // 'Hello World'
+```
+
+---
+
+#### `stripHTML(str)`
+
+Removes all HTML tags from a string.
+
+- `str` *(string)*
+
+**Returns** `string`
+
+```js
+stripHTML('<p>Hello <strong>world</strong></p>'); // 'Hello world'
+```
+
+---
+
+### Array
+
+---
+
+#### `groupBy(arr, key)`
+
+Groups an array of objects by a property value.
+
+- `arr` *(Array)*
+- `key` *(string)* — property name to group by
+
+**Returns** `object` — keys are group values, values are arrays of items
+
+```js
+groupBy([{ type: 'fruit', name: 'apple' }, { type: 'veg', name: 'carrot' }], 'type');
+// { fruit: [{ type: 'fruit', name: 'apple' }], veg: [...] }
+```
+
+---
+
+#### `deepClone(value)`
+
+Deep copies an object or array using the native `structuredClone` API.
+
+- `value` *(any)*
+
+**Returns** `*` — deep clone
+
+---
+
+#### `chunk(arr, size)`
+
+Splits an array into chunks of a given size.
+
+- `arr` *(Array)*
+- `size` *(number)*
+
+**Returns** `Array<Array>`
+
+```js
+chunk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
+```
+
+---
+
+### Async
+
+---
+
+#### `debounce(fn, wait)`
+
+Returns a debounced version of `fn` that delays invoking until `wait` milliseconds have elapsed since the last call.
+
+- `fn` *(Function)*
+- `wait` *(number)* — milliseconds
+
+**Returns** `Function`
+
+```js
+window.addEventListener('input', debounce(handleInput, 300));
+```
+
+---
+
+#### `throttle(fn, wait)`
+
+Returns a throttled version of `fn` that invokes at most once per `wait` milliseconds.
+
+- `fn` *(Function)*
+- `wait` *(number)* — milliseconds
+
+**Returns** `Function`
+
+```js
+window.addEventListener('scroll', throttle(handleScroll, 100));
 ```
 
 ---
