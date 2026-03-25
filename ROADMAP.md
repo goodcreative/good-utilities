@@ -64,7 +64,7 @@ Pure object utilities with no DOM dependency.
 | `isEqual(a, b)` | Structural deep equality check |
 | `isEmpty(value)` | `true` for `null`, `undefined`, `''`, `[]`, `{}` |
 
-### Number
+### Number ✓ implemented
 
 | Function | Description |
 |---|---|
