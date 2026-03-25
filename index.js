@@ -58,6 +58,8 @@ import throttle from "./src/Async/throttle/throttle.js";
 // Number
 import clamp from "./src/Number/clamp/clamp.js";
 import randomBetween from "./src/Number/randomBetween/randomBetween.js";
+import roundTo from "./src/Number/roundTo/roundTo.js";
+import formatBytes from "./src/Number/formatBytes/formatBytes.js";
 
 /////////////
 // Exports //
@@ -118,3 +120,5 @@ export { throttle };
 // Number
 export { clamp };
 export { randomBetween };
+export { roundTo };
+export { formatBytes };
