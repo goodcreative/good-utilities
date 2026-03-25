@@ -50,6 +50,10 @@ import stripHTML from "./src/String/stripHTML/stripHTML.js";
 import groupBy from "./src/Array/groupBy/groupBy.js";
 import deepClone from "./src/Array/deepClone/deepClone.js";
 import chunk from "./src/Array/chunk/chunk.js";
+import unique from "./src/Array/unique/unique.js";
+import uniqueBy from "./src/Array/uniqueBy/uniqueBy.js";
+import difference from "./src/Array/difference/difference.js";
+import intersection from "./src/Array/intersection/intersection.js";
 
 // Async
 import debounce from "./src/Async/debounce/debounce.js";
@@ -112,6 +116,10 @@ export { stripHTML };
 export { groupBy };
 export { deepClone };
 export { chunk };
+export { unique };
+export { uniqueBy };
+export { difference };
+export { intersection };
 
 // Async
 export { debounce };
