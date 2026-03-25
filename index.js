@@ -55,6 +55,10 @@ import chunk from "./src/Array/chunk/chunk.js";
 import debounce from "./src/Async/debounce/debounce.js";
 import throttle from "./src/Async/throttle/throttle.js";
 
+// Number
+import clamp from "./src/Number/clamp/clamp.js";
+import randomBetween from "./src/Number/randomBetween/randomBetween.js";
+
 /////////////
 // Exports //
 /////////////
@@ -110,3 +114,7 @@ export { chunk };
 // Async
 export { debounce };
 export { throttle };
+
+// Number
+export { clamp };
+export { randomBetween };
