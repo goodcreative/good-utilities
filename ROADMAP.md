@@ -26,7 +26,7 @@ Future additions and ideas for `@wearegood/good-utilities`. Items are grouped by
 | `snakeCase(str)` | `'Hello World'` → `'hello_world'` |
 | `countWords(str)` | Returns the number of words in a string |
 
-### Array
+### Array ✓ implemented
 
 | Function | Description |
 |---|---|

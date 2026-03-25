@@ -54,6 +54,9 @@ import unique from "./src/Array/unique/unique.js";
 import uniqueBy from "./src/Array/uniqueBy/uniqueBy.js";
 import difference from "./src/Array/difference/difference.js";
 import intersection from "./src/Array/intersection/intersection.js";
+import sortBy from "./src/Array/sortBy/sortBy.js";
+import shuffle from "./src/Array/shuffle/shuffle.js";
+import sample from "./src/Array/sample/sample.js";
 
 // Async
 import debounce from "./src/Async/debounce/debounce.js";
@@ -120,6 +123,9 @@ export { unique };
 export { uniqueBy };
 export { difference };
 export { intersection };
+export { sortBy };
+export { shuffle };
+export { sample };
 
 // Async
 export { debounce };
