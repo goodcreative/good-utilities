@@ -1,8 +1,19 @@
 {
   "name": "@wearegood/good-utilities",
-  "version": "1.7.3",
+  "version": "2.0.0",
   "description": "A collection of JavaScript utility functions",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./DOM/*": "./src/DOM/*/*.js",
+    "./Events/*": "./src/Events/*/*.js",
+    "./Storage/*": "./src/Storage/*/*.js",
+    "./String/*": "./src/String/*/*.js",
+    "./Array/*": "./src/Array/*/*.js",
+    "./Async/*": "./src/Async/*/*.js",
+    "./Number/*": "./src/Number/*/*.js"
+  },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
@@ -18,11 +29,6 @@
     "url": "https://github.com/goodcreative/good-utilities/issues"
   },
   "homepage": "https://github.com/goodcreative/good-utilities#readme",
-  "dependencies": {
-    "debounce": "^1.2.0",
-    "delegate": "^3.2.0",
-    "pubsub-js": "^1.7.0"
-  },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.0",
     "jsdom": "^25.0.0",
