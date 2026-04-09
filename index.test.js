@@ -43,9 +43,21 @@ import {
   groupBy,
   deepClone,
   chunk,
+  unique,
+  uniqueBy,
+  difference,
+  intersection,
+  sortBy,
+  shuffle,
+  sample,
   // Async
   debounce,
-  throttle
+  throttle,
+  // Number
+  clamp,
+  randomBetween,
+  roundTo,
+  formatBytes
 } from './index.js';
 
 describe('index.js exports', () => {
@@ -105,10 +117,24 @@ describe('index.js exports', () => {
     it('exports groupBy', () => { expect(typeof groupBy).toBe('function'); });
     it('exports deepClone', () => { expect(typeof deepClone).toBe('function'); });
     it('exports chunk', () => { expect(typeof chunk).toBe('function'); });
+    it('exports unique', () => { expect(typeof unique).toBe('function'); });
+    it('exports uniqueBy', () => { expect(typeof uniqueBy).toBe('function'); });
+    it('exports difference', () => { expect(typeof difference).toBe('function'); });
+    it('exports intersection', () => { expect(typeof intersection).toBe('function'); });
+    it('exports sortBy', () => { expect(typeof sortBy).toBe('function'); });
+    it('exports shuffle', () => { expect(typeof shuffle).toBe('function'); });
+    it('exports sample', () => { expect(typeof sample).toBe('function'); });
   });
 
   describe('Async', () => {
     it('exports debounce', () => { expect(typeof debounce).toBe('function'); });
     it('exports throttle', () => { expect(typeof throttle).toBe('function'); });
+  });
+
+  describe('Number', () => {
+    it('exports clamp', () => { expect(typeof clamp).toBe('function'); });
+    it('exports randomBetween', () => { expect(typeof randomBetween).toBe('function'); });
+    it('exports roundTo', () => { expect(typeof roundTo).toBe('function'); });
+    it('exports formatBytes', () => { expect(typeof formatBytes).toBe('function'); });
   });
 });

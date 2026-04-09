@@ -29,4 +29,9 @@ describe('formatBytes', () => {
   it('returns 0 B for zero', () => {
     expect(formatBytes(0)).toBe('0 B');
   });
+
+  it('formats to at most 2 decimal places', () => {
+    // 1234 bytes = 1.205078125 KB — should round to 2 dp, not show 9+
+    expect(formatBytes(1234)).toBe('1.21 KB');
+  });
 });

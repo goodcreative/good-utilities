@@ -17,4 +17,12 @@ describe('chunk', () => {
   it('handles size of 1', () => {
     expect(chunk([1, 2, 3], 1)).toEqual([[1], [2], [3]]);
   });
+
+  it('throws RangeError for size of 0', () => {
+    expect(() => chunk([1, 2, 3], 0)).toThrow(RangeError);
+  });
+
+  it('throws RangeError for negative size', () => {
+    expect(() => chunk([1, 2, 3], -1)).toThrow(RangeError);
+  });
 });

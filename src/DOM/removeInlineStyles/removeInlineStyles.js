@@ -6,5 +6,5 @@
  * @returns {type} Description
  */
 export default function removeInlineStyles(element) {
-  element.setAttribute('style', '');
+  element.removeAttribute('style');
 }

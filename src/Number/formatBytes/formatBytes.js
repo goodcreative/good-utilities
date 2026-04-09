@@ -12,6 +12,6 @@ export default function formatBytes(bytes) {
     value /= 1024;
     i++;
   }
-  const formatted = parseFloat(value.toFixed(10));
+  const formatted = parseFloat(value.toFixed(2));
   return `${formatted} ${units[i]}`;
 }

@@ -23,4 +23,12 @@ describe('titleCase', () => {
   it('handles single word', () => {
     expect(titleCase('hello')).toBe('Hello');
   });
+
+  it('returns empty string unchanged', () => {
+    expect(titleCase('')).toBe('');
+  });
+
+  it('returns null unchanged', () => {
+    expect(titleCase(null)).toBe(null);
+  });
 });

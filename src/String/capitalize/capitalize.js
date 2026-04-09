@@ -16,5 +16,6 @@ export function capitalize(str) {
  * @returns {string}
  */
 export function titleCase(str) {
+  if (!str) return str;
   return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }

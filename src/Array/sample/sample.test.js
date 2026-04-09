@@ -26,4 +26,10 @@ describe('sample', () => {
   it('returns empty array when n is 0', () => {
     expect(sample([1, 2, 3], 0)).toEqual([]);
   });
+
+  it('returns all items when n exceeds array length', () => {
+    const result = sample([1, 2, 3], 10);
+    expect(result).toHaveLength(3);
+    expect(new Set(result).size).toBe(3);
+  });
 });
